@@ -1,0 +1,9 @@
+{
+  "phase": 2,
+  "num_training_images": 2500,
+  "num_validation_images": 400,
+  "num_test_images": 200,
+  "test_loss": 0.3908398151397705,
+  "test_accuracy": 0.9102684259414673,
+  "epochs_trained": 15
+}

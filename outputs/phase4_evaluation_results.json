@@ -1,0 +1,361 @@
+{
+  "samples": [
+    {
+      "image": "978_IM-2465-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "osseus osseus osseus osseus osseus osseus osseus osseus osseus osseus osseus oss",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "979_IM-2466-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "979_IM-2466-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "blunting blunting blunting blunting blunting blunting blunting blunting blunting",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "97_IM-2460-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "condition. condition. condition. condition. condition. condition. condition. con",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "97_IM-2460-3003.dcm.png",
+      "actual": "unknown",
+      "generated": "last last last last last last last last last last last last last last last last ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "980_IM-2468-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "02/010/xxxx. 02/010/xxxx. 02/010/xxxx. 02/010/xxxx. 02/010/xxxx. 02/010/xxxx. 02",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "980_IM-2468-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "981_IM-2469-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "982_IM-2470-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "982_IM-2470-3003.dcm.png",
+      "actual": "unknown",
+      "generated": "ivc ivc ivc ivc ivc ivc ivc ivc ivc ivc ivc ivc ivc making making making making ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "983_IM-2471-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "hypoventilated. hypoventilated. hypoventilated. hypoventilated. hypoventilated. ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "983_IM-2471-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "extremity extremity extremity extremity extremity extremity extremity extremity ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "984_IM-2471-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "markings markings markings markings markings markings markings markings markings",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "984_IM-2471-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "984_IM-2471-3001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "985_IM-2472-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "02/010/xxxx. 02/010/xxxx. 02/010/xxxx. 02/010/xxxx. 02/010/xxxx. 02/010/xxxx. 02",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "986_IM-2473-2002.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "986_IM-2473-3003.dcm.png",
+      "actual": "unknown",
+      "generated": "lungs lungs lungs lungs lungs lungs lungs lungs lungs lungs lungs lungs lungs lu",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "987_IM-2474-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "extremity extremity extremity extremity extremity extremity extremity extremity ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "988_IM-2474-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "988_IM-2474-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "989_IM-2475-1002001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "989_IM-2475-1003002.dcm.png",
+      "actual": "unknown",
+      "generated": "extremity extremity extremity extremity extremity extremity extremity extremity ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "98_IM-2467-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "noncalcified, noncalcified, noncalcified, noncalcified, noncalcified, noncalcifi",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "98_IM-2467-4004.dcm.png",
+      "actual": "unknown",
+      "generated": "extremity extremity extremity extremity extremity extremity extremity extremity ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "990_IM-2476-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "990_IM-2476-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 2.1 ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "991_IM-2476-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "osseus osseus osseus osseus osseus osseus osseus osseus osseus osseus osseus oss",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "991_IM-2476-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "osseus osseus osseus osseus osseus osseus osseus osseus osseus osseus osseus oss",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "992_IM-2477-0001-0001.dcm.png",
+      "actual": "unknown",
+      "generated": "17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "992_IM-2477-0001-0002.dcm.png",
+      "actual": "unknown",
+      "generated": "hypoventilated. hypoventilated. hypoventilated. hypoventilated. hypoventilated. ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "993_IM-2478-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "torturous torturous torturous torturous torturous torturous torturous torturous ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "993_IM-2478-1002.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "994_IM-2478-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "994_IM-2478-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "history history history history history history history history history history ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "995_IM-2478-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "995_IM-2478-1002.dcm.png",
+      "actual": "unknown",
+      "generated": "mediastinum, mediastinum, mediastinum, mediastinum, mediastinum, mediastinum, me",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "996_IM-2479-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "hypoventilated. hypoventilated. hypoventilated. hypoventilated. hypoventilated. ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "996_IM-2479-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "997_IM-2479-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "extremity extremity extremity extremity extremity extremity extremity extremity ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "997_IM-2479-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "hypoventilated. hypoventilated. hypoventilated. hypoventilated. hypoventilated. ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "998_IM-2479-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "hypoventilated. hypoventilated. hypoventilated. hypoventilated. hypoventilated. ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "998_IM-2479-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "999_IM-2480-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "999_IM-2480-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "999_IM-2480-3001.dcm.png",
+      "actual": "unknown",
+      "generated": "alignment. alignment. alignment. alignment. alignment. alignment. alignment. ali",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "99_IM-2476-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "elevated, elevated, elevated, elevated, elevated, elevated, elevated, elevated, ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "99_IM-2476-1002.dcm.png",
+      "actual": "unknown",
+      "generated": "mediastinum, mediastinum, mediastinum, mediastinum, mediastinum, mediastinum, me",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "9_IM-2407-1001.dcm.png",
+      "actual": "unknown",
+      "generated": "extremity extremity extremity extremity extremity extremity extremity extremity ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    },
+    {
+      "image": "9_IM-2407-2001.dcm.png",
+      "actual": "unknown",
+      "generated": "last last last last last last last last last last last last last last last last ",
+      "bleu": 0.0,
+      "rouge": 0.0
+    }
+  ],
+  "metrics_summary": {
+    "bleu_mean": 0.0,
+    "bleu_std": 0.0,
+    "rouge_mean": 0.0,
+    "rouge_std": 0.0,
+    "samples_evaluated": 50
+  }
+}
