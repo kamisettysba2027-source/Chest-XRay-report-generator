@@ -1,6 +1,11 @@
 import streamlit as st
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import (
+    Input, Dense, LSTM, Embedding, Dropout,
+    Add, RepeatVector, TimeDistributed, Lambda
+)
+from tensorflow.keras.applications import InceptionV3
 import numpy as np
 from PIL import Image
 import pickle
@@ -27,57 +32,90 @@ with st.sidebar:
     st.markdown("---")
     st.caption("Built with TensorFlow and Streamlit")
 
-# Model loading
+
+def build_model(vocab_size, max_seq_length=150, embedding_dim=256, lstm_units=256):
+    """Rebuild the model architecture (same as training)"""
+    
+    tf.keras.backend.clear_session()
+    
+    # Image encoder
+    inception = InceptionV3(weights='imagenet', include_top=False, input_shape=(256, 256, 3))
+    inception.trainable = False
+    
+    image_input = Input(shape=(256, 256, 3), name='image_input')
+    features = inception(image_input)
+    features = tf.keras.layers.GlobalAveragePooling2D()(features)
+    image_features = Dense(embedding_dim, activation='relu', name='image_features')(features)
+    image_features_expanded = RepeatVector(max_seq_length, name='repeat_image')(image_features)
+    
+    # Text decoder
+    text_input = Input(shape=(max_seq_length,), name='text_input')
+    embedding = Embedding(vocab_size, embedding_dim, name='embedding')(text_input)
+    lstm1 = LSTM(lstm_units, return_sequences=True, dropout=0.5, name='lstm1')(embedding)
+    lstm2 = LSTM(lstm_units, return_sequences=True, dropout=0.5, name='lstm2')(lstm1)
+    
+    # Merge
+    merged = Add(name='merge')([image_features_expanded, lstm2])
+    merged = Dropout(0.5, name='dropout1')(merged)
+    dense1 = TimeDistributed(Dense(512, activation='relu'), name='dense1')(merged)
+    dense1 = Dropout(0.5, name='dropout2')(dense1)
+    output = TimeDistributed(Dense(vocab_size, activation='softmax'), name='output')(dense1)
+    output = Lambda(lambda x: x[:, :-1, :], name='slice_output')(output)
+    
+    model = Model(inputs=[image_input, text_input], outputs=output)
+    return model
+
+
 @st.cache_resource
 def load_model_and_vocab():
     try:
-        # Try Phase 2 model first (better accuracy), then Phase 3
-        model_paths = [
-            "models/best_model_2500_gen.h5",
-            "models/best_model_full_dataset.h5",
-            "models/best_model_1000_gen.h5"
-        ]
-        
-        model_path = None
-        for path in model_paths:
-            if os.path.exists(path):
-                model_path = path
-                break
-        
-        if model_path is None:
-            st.error("No model file found in models/ folder")
-            return None, None
-        
-        st.info(f"Loading model: {model_path}")
-        
-        # Modern Keras compatibility - no more keras.config needed
-        try:
-            model = load_model(model_path, compile=False)
-        except Exception as e1:
-            # Fallback for older models
-            try:
-                model = load_model(model_path, compile=False, safe_mode=False)
-            except Exception as e2:
-                st.error(f"Could not load model: {str(e2)}")
-                return None, None
-        
-        # Load vocabulary
+        # Load vocabulary first to know vocab_size
         vocab_path = "models/vocab.pkl"
         if not os.path.exists(vocab_path):
-            st.error("Vocabulary file (vocab.pkl) not found in models/ folder")
-            st.info("The app needs vocab.pkl to generate reports")
+            st.error("Vocabulary file (vocab.pkl) not found")
             return None, None
         
         with open(vocab_path, "rb") as f:
             vocab = pickle.load(f)
         
+        st.info(f"Loaded vocabulary: {len(vocab)} words")
+        
+        # Build model architecture
+        st.info("Building model architecture...")
+        model = build_model(vocab_size=len(vocab))
+        
+        # Try loading weights from available files
+        weight_paths = [
+            "models/best_model_full_dataset.weights.h5",
+            "models/best_model_full_dataset.h5",
+            "models/best_model_2500_gen.h5",
+            "models/best_model_1000_gen.h5",
+        ]
+        
+        loaded = False
+        for path in weight_paths:
+            if os.path.exists(path):
+                try:
+                    st.info(f"Trying to load weights from: {path}")
+                    model.load_weights(path)
+                    st.success(f"Loaded weights from: {path}")
+                    loaded = True
+                    break
+                except Exception as e:
+                    st.warning(f"Could not load {path}: {str(e)[:100]}")
+                    continue
+        
+        if not loaded:
+            st.error("Could not load any model weights")
+            return None, None
+        
         return model, vocab
     
     except Exception as e:
-        st.error(f"Error loading model: {str(e)}")
+        st.error(f"Error: {str(e)}")
         return None, None
 
-# Inference function
+
 def generate_report(image, model, vocab, max_words=50):
     img = image.convert("L")
     img = img.resize((256, 256))
@@ -106,6 +144,7 @@ def generate_report(image, model, vocab, max_words=50):
             confidences.append(confidence)
     
     return words, confidences
+
 
 # Main app
 model, vocab = load_model_and_vocab()
