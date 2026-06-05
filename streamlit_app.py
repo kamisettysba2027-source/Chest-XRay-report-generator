@@ -21,7 +21,7 @@ st.markdown("---")
 # Sidebar
 with st.sidebar:
     st.title("About This Project")
-    st.info("AI-Powered Medical Imaging System using CNN-LSTM. Trained on 7470 images with 96-97% accuracy.")
+    st.info("AI-Powered Medical Imaging System using CNN-LSTM. Trained on 7470 images.")
     st.markdown("---")
     st.warning("DISCLAIMER: For research/educational purposes only. Not for medical diagnosis.")
     st.markdown("---")
@@ -31,21 +31,48 @@ with st.sidebar:
 @st.cache_resource
 def load_model_and_vocab():
     try:
-        model_path = "models/best_model_full_dataset.h5"
-        vocab_path = "models/vocab.pkl"
-
-        if not os.path.exists(model_path):
-            st.error(f"Model file not found at {model_path}")
+        # Try Phase 2 model first (better accuracy), then Phase 3
+        model_paths = [
+            "models/best_model_2500_gen.h5",
+            "models/best_model_full_dataset.h5",
+            "models/best_model_1000_gen.h5"
+        ]
+        
+        model_path = None
+        for path in model_paths:
+            if os.path.exists(path):
+                model_path = path
+                break
+        
+        if model_path is None:
+            st.error("No model file found in models/ folder")
             return None, None
-
-        import keras
-        keras.config.enable_unsafe_deserialization()
-        model = load_model(model_path)
-
+        
+        st.info(f"Loading model: {model_path}")
+        
+        # Modern Keras compatibility - no more keras.config needed
+        try:
+            model = load_model(model_path, compile=False)
+        except Exception as e1:
+            # Fallback for older models
+            try:
+                model = load_model(model_path, compile=False, safe_mode=False)
+            except Exception as e2:
+                st.error(f"Could not load model: {str(e2)}")
+                return None, None
+        
+        # Load vocabulary
+        vocab_path = "models/vocab.pkl"
+        if not os.path.exists(vocab_path):
+            st.error("Vocabulary file (vocab.pkl) not found in models/ folder")
+            st.info("The app needs vocab.pkl to generate reports")
+            return None, None
+        
         with open(vocab_path, "rb") as f:
             vocab = pickle.load(f)
-
+        
         return model, vocab
+    
     except Exception as e:
         st.error(f"Error loading model: {str(e)}")
         return None, None
@@ -57,27 +84,27 @@ def generate_report(image, model, vocab, max_words=50):
     img_array = np.array(img) / 255.0
     img_rgb = np.stack([img_array, img_array, img_array], axis=-1)
     img_batch = np.expand_dims(img_rgb, 0)
-
+    
     text_batch = np.zeros((1, 150), dtype=np.int32)
     predictions = model.predict([img_batch, text_batch], verbose=0)[0]
-
+    
     reverse_vocab = {v: k for k, v in vocab.items()}
-
+    
     words = []
     confidences = []
-
+    
     for pred in predictions[:max_words]:
         idx = np.argmax(pred)
         confidence = float(pred[idx])
         word = reverse_vocab.get(int(idx), "<UNK>")
-
+        
         if word == "<PAD>":
             break
-
+        
         if word not in ["<START>", "<END>", "<UNK>", "<PAD>"]:
             words.append(word)
             confidences.append(confidence)
-
+    
     return words, confidences
 
 # Main app
@@ -85,41 +112,41 @@ model, vocab = load_model_and_vocab()
 
 if model is not None and vocab is not None:
     col1, col2 = st.columns([1, 1])
-
+    
     with col1:
         st.subheader("Upload X-Ray Image")
         st.write("Supported formats: JPG, JPEG, PNG")
-
+        
         uploaded_file = st.file_uploader(
             "Choose an X-ray image...",
             type=["jpg", "jpeg", "png"]
         )
-
+        
         if uploaded_file is not None:
             image = Image.open(uploaded_file)
             st.image(image, caption="Uploaded X-Ray", use_column_width=True)
-
+            
             st.write("Image Details:")
             st.write(f"- Size: {image.size}")
             st.write(f"- Mode: {image.mode}")
-
+    
     with col2:
         st.subheader("Generated Report")
-
+        
         if uploaded_file is not None:
             with st.spinner("Analyzing X-ray and generating report..."):
                 words, confidences = generate_report(image, model, vocab)
-
+            
             if words:
                 report = " ".join(words)
                 avg_confidence = float(np.mean(confidences))
-
+                
                 st.markdown("**Medical Report:**")
                 st.info(report)
-
+                
                 st.markdown("---")
                 st.markdown("**Confidence Analysis:**")
-
+                
                 col_a, col_b, col_c = st.columns(3)
                 with col_a:
                     st.metric("Average Confidence", f"{avg_confidence:.1%}")
@@ -129,7 +156,7 @@ if model is not None and vocab is not None:
                 with col_c:
                     low_conf = sum(1 for c in confidences if c < 0.5)
                     st.metric("Low Confidence", f"{low_conf}/{len(words)}")
-
+                
                 with st.expander("Word-by-Word Confidence"):
                     import pandas as pd
                     df = pd.DataFrame({
@@ -145,9 +172,6 @@ if model is not None and vocab is not None:
                 st.warning("Could not generate report. Try a different image.")
         else:
             st.info("Upload an X-ray image to generate a report")
-
+    
     st.markdown("---")
     st.markdown("Chest X-Ray Report Generator v1.0 | TensorFlow + Streamlit")
-else:
-    st.error("Could not load model. Please check that model files are present.")
-    st.info("Required: models/best_model_full_dataset.h5 and models/vocab.pkl")
